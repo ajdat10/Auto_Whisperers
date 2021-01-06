@@ -24,11 +24,11 @@ module.exports = new Schema(
             type: String,
             required: true
         },
-        answers: [{
+        answersContent: [{
             type: Schema.Types.ObjectId,
             ref: 'answers'
         }],
-        questions: [{
+        questionsContent: [{
             type: Schema.Types.ObjectId,
             ref: 'questions'
         }]

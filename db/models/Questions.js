@@ -2,7 +2,7 @@ const {Schema} = require('mongoose')
 
 module.exports = new Schema (
     {
-        questionContent: {
+        questionsContent: {
             type: String,
             required: true
         },
@@ -10,7 +10,7 @@ module.exports = new Schema (
             type: Schema.Types.ObjectId,
             ref: 'users'
         },
-        answers:{
+        answersContent:{
             type: Schema.Types.ObjectId,
             ref: 'answers'
         }
