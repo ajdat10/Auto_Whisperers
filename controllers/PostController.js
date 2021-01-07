@@ -1,6 +1,6 @@
 const { Question, User, Answer } = require('../db/schema')
 
-const GetPost = async (req, res) => {
+const GetPosts = async (req, res) => {
     try {
         const posts = await Question.find().populate([
             {
@@ -74,7 +74,7 @@ const UpdatePost = async (req, res) => {
 }
 
 module.exports = {
-    GetPost,
+    GetPosts,
     CreatePost,
     GetPostById,
     UpdatePost,

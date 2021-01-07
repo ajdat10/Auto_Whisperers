@@ -29,7 +29,7 @@ const DeleteAnswer = async (req, res) => {
     }
 }
 
-const UpdateAnswer = async (req, req) => {
+const UpdateAnswer = async (req, res) => {
     try{
         const answer = await Answer.findByIdAndUpdate(
             res.params.answer_id,
