@@ -10,10 +10,10 @@ module.exports = new Schema (
             type: Schema.Types.ObjectId,
             ref: 'users'
         },
-        answersContent:{
+        answersContent:[{
             type: Schema.Types.ObjectId,
             ref: 'answers'
-        }
+        }]
     },
     {timestamps: true}
 )

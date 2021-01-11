@@ -16,6 +16,6 @@ props.fieldType === 'textfield' ? (
     value={props.value}
     onChange={(e) => props.onChange(e)}
     placeholder={props.placeholder}
-    autoComplete="false"
+    autoComplete={props.autoComplete}
   />
 )

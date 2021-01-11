@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+    background-image: url(https://i.imgur.com/D5uQtOp.jpg);
+    
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.home {
+    color: white;
+}
+
+.descrip{
+    width: 50%;
+    padding: 50px;
+    margin: auto;
+    font-size: medium;
+}
+
+.buttons{
+    justify-content: center;
+}

@@ -1,16 +1,60 @@
 const { Question, Answer } = require('../db/schema')
 
 const CreateAnswer = async (req, res) => {
+    // console.log(req.body)
     try {
         const answer = new Answer({ ...req.body, user_id: req.params.user_id })
         answer.save()
-        await Question.update({ _id: req.params.post_id },
-            { $push: { answers: answer } })
+        await Question.updateMany(
+            { _id: req.params.post_id },
+            { $push: { answersContent: answer } })
         res.send(answer)
     } catch (error) {
         throw error
     }
 }
+
+const GetAnswers = async (req, res) => {
+    try {
+        const answers = await Answer.find().sort({ createdAt: -1 })
+        res.send(answers)
+    } catch (error) {
+        throw error
+    }
+}
+
+const GetAnswerById = async (req, res) => {
+    try {
+        const answer = await Answer.findById(req.params.answer_id).populate([
+            {
+                model: 'users',
+                path: 'user_id',
+                select: '_id name'
+                
+            },
+            {
+                path: 'questions',
+                populate:{
+                    path: 'user_id',
+                    model: 'users',
+                    select: '_id name'
+                }
+            }
+        ])
+        res.send(answer)
+        console.log(answer)
+    } catch (error) {
+        throw error
+    }
+}
+// const GetAnswer = async (req, res) => {
+//     try{
+//         const get_answer = await Answer.findB()
+//         res.send(get_answer)
+//     }catch(error){
+//         throw error
+//     }
+// }
 
 const DeleteAnswer = async (req, res) => {
     try {
@@ -24,28 +68,31 @@ const DeleteAnswer = async (req, res) => {
                 res.send(updatedPost)
             }
         )
-    }catch(error){
+    } catch (error) {
         throw error
     }
 }
 
 const UpdateAnswer = async (req, res) => {
-    try{
+    try {
         const answer = await Answer.findByIdAndUpdate(
             res.params.answer_id,
             {
                 ...req.body
             },
-            {new: true, useFindAndModify: false},
+            { new: true, useFindAndModify: false },
         )
         res.send(answer)
-    }catch (error) {
+    } catch (error) {
         throw error
     }
 }
 
 module.exports = {
     CreateAnswer,
+    GetAnswers,
+    GetAnswerById,
+    // GetAnswer,
     DeleteAnswer,
     UpdateAnswer
 }

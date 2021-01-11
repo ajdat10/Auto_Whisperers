@@ -22,7 +22,9 @@ const CreateUser = async (req, res) => {
         const body = req.body
         const password_digest = await generatePassword(body.password)
         const user = new User({
-            name: body.name,
+            username: body.username,
+            firstName: body.firstName,
+            lastName: body.lastName,
             email: body.email,
             password_digest
         })
@@ -36,7 +38,7 @@ const CreateUser = async (req, res) => {
 
 const SignInUser = async (req, res, next) => {
     try {
-      const user = await User.findOne({ email: req.body.email })
+      const user = await User.findOne({ username: req.body.username })
   
       if (
         user &&
@@ -44,7 +46,7 @@ const SignInUser = async (req, res, next) => {
       ) {
         const payload = {
           _id: user._id,
-          name: user.name
+          username: user.username
         }
         res.locals.payload = payload
         return next()

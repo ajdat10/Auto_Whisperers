@@ -5,7 +5,9 @@ const GetPosts = async (req, res) => {
         const posts = await Question.find().populate([
             {
                 model: 'answers',
-                path: 'answers'
+                path: 'answers',
+                
+
             }
         ])
         res.send(posts)
@@ -17,6 +19,13 @@ const GetPosts = async (req, res) => {
 const GetUserPosts = async (req, res) => {
     try {
         const userPosts = await Question.find({ user_id: req.params.user_id })
+        // .populate([
+        //     {
+        //         model: 'answers',
+        //         path: 'answers',
+                
+        //     }
+        // ])
         res.send(userPosts)
     } catch (error) {
         throw error
@@ -25,11 +34,11 @@ const GetUserPosts = async (req, res) => {
 
 const CreatePost = async (req, res) => {
     try {
-        const newPosts = await Question({ ...req.body, user_id: req.params.user_id })
-        newPosts.save()
+        const newPost = await Question({ ...req.body, user_id: req.params.user_id })
+        newPost.save()
         await User.findByIdAndUpdate(
             { _id: req.params.user_id },
-            { $push: { products: newPosts } },
+            { $push: { questions: newPost } },
             { upsert: true, new: true, useFindAndModify: false }
         )
         res.send(newPost)
@@ -41,6 +50,7 @@ const CreatePost = async (req, res) => {
 const GetPostById = async (req, res) => {
     try {
         const post = await (await Question.findById(req.params.post_id))
+      
         res.send(post)
     } catch (error) {
         throw error;
@@ -50,7 +60,7 @@ const GetPostById = async (req, res) => {
 const DeletePost = async (req, res) => {
     try {
         const post = await Question.findById(req.params.post_id)
-        await Answer.deleteMany({ _id: { $in: post.answers } })
+        await Answer.deleteMany({ _id: { $in: post.answersContent } })
         await Question.findByIdAndDelete(req.params.post_id)
         res.send({ msg: 'Post deleted' })
     } catch (error) {
