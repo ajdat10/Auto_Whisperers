@@ -13,7 +13,7 @@ This site is designed to provide and gain knowledge about your automotive vehicl
 * MongoDB
 * Express
 * React
-* JavaScript
+* Node
 * Mongoose
 * HTML/CSS/JavaScript
 
