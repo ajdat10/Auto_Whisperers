@@ -1,5 +1,24 @@
+<div>
+  <img alt="mern" src="https://geeksperhour.com/wp-content/uploads/2019/02/mern-img.png" />
+</div>
+
 # Auto Whisperers
+## 1-12-21
 
 ## User Expierence
 
-Here at Auto Whisperers you are given the confidence to ask any question about your vehicle from basics to advance. The user will be able to create/login and be directed to a home. The home page consist of "create question", "view answered questions", "pending answeres", which the user is free to choose from. Depending on 
+This site is designed to provide and gain knowledge about your automotive vehicle. Once logged in you can surf the many different questions other users have regarding specific to their vehicle’s needs. You as the user have the ability to help others by going onto their question and giving them an accurate answer.
+
+## Technology Used
+* MongoDB
+* Express
+* React
+* JavaScript
+* Mongoose
+* HTML/CSS/JavaScript
+
+## Links
+Andrew Cruz: [Github](https://github.com/ajdat10) | [LinkedIn](https://www.linkedin.com/in/andrew-j-cruz/)
+
+## ERD
+![ERD](ERD.png)
